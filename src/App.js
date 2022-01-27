@@ -1,6 +1,6 @@
 import "./App.css";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import { Switch } from "react-router";
+import { BrowserRouter, Routes, Route, Redirect } from "react-router-dom";
+import Login from "./Components/Login/Login";
 
 function App() {
   return (
@@ -8,12 +8,12 @@ function App() {
       <div className="App">
         <h1>Lost in Translation App</h1>
         <h4>
-          <span class="material-icons">language</span>
+          <span className="material-icons">language</span>
         </h4>
       </div>
-      <Switch>
+      <Routes>
         <Route path="/" exact component={Login} />
-      </Switch>
+      </Routes>
     </BrowserRouter>
   );
 }
