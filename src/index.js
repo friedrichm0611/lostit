@@ -1,9 +1,5 @@
-//import "dotenv/config";
-//import express from "express";
-
 import React from "react";
 import ReactDOM from "react-dom";
-import bootstrap from "bootstrap";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";

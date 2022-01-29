@@ -1,8 +1,8 @@
-const apiURL = process.env.REACT_APP_API_URL;
-
 import { createHeaders } from "./index";
 
-export const checkForUser = async (username) => {
+const apiURL = process.env.REACT_APP_API_URL;
+
+const checkForUser = async (username) => {
   try {
     const response = await fetch(`${apiURL}?username=${username}`);
     if (!response.ok) {
@@ -15,7 +15,7 @@ export const checkForUser = async (username) => {
   }
 };
 
-export const createUser = async (username) => {
+const createUser = async (username) => {
   try {
     const response = await fetch(apiURL, {
       method: "POST",
@@ -37,11 +37,13 @@ export const createUser = async (username) => {
 
 export const loginUser = async (username) => {
   const [checkError, user] = await checkForUser(username);
+
+  if (checkError !== null) {
+    return [checkError, null];
+  }
+
   if (user.lenght > 0) {
     return [null, user.pop()];
   }
-  const [createError, newUser] = createUser(username);
-  if (createError !== null) {
-    return [null, newUser];
-  }
+  return await createUser(username);
 };

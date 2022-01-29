@@ -1,4 +1,4 @@
-const apiKey = "to_be_inserted";
+const apiKey = process.env.REACT_APP_API_KEY;
 
 export const createHeaders = () => {
   return {
