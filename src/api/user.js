@@ -9,6 +9,8 @@ const checkForUser = async (username) => {
       throw new Error("Could not complete request");
     }
     const data = await response.json();
+    console.log(`${apiURL}?username=${username}`);
+    console.log(data);
     return [null, data];
   } catch (error) {
     return [error.message, []];
@@ -22,7 +24,7 @@ const createUser = async (username) => {
       headers: createHeaders(),
       body: JSON.stringify({
         username,
-        orders: [],
+        translations: [],
       }),
     });
     if (!response.ok) {
@@ -42,7 +44,8 @@ export const loginUser = async (username) => {
     return [checkError, null];
   }
 
-  if (user.lenght > 0) {
+  if (user.length > 0) {
+    console.log(user.length);
     return [null, user.pop()];
   }
   return await createUser(username);

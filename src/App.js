@@ -4,6 +4,8 @@ import Login from "./Components/Login/Login";
 import Main from "./Components/Main/Main";
 import Results from "./Components/Results/Results";
 
+localStorage.clear();
+
 function App() {
   return (
     <div className="App">

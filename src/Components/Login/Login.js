@@ -3,6 +3,18 @@ import { loginUser } from "../../api/user";
 import Button from "react-bootstrap/Button";
 import "./Login.css";
 
+export const storageSave = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
+
+export const storageRead = (key) => {
+  const data = localStorage.getItem(key);
+  if (data) {
+    return JSON.parse(data);
+  }
+  return null;
+};
+
 const usernameConfig = {
   // setting some properties for the input field "username"
   required: true,
@@ -21,8 +33,9 @@ const Login = () => {
   const onSubmit = async ({ username }) => {
     // Catching the data from the form
     const [error, user] = await loginUser(username);
-    console.log("Error: ", error);
-    console.log("User: ", user);
+    if (user !== null) {
+      storageSave("username", user);
+    }
   };
 
   const errorMessage = (() => {
