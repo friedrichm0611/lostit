@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../../api/user";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router";
 import "./Login.css";
 
 export const storageSave = (key, value) => {
@@ -30,11 +32,15 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = async ({ username }) => {
     // Catching the data from the form
     const [error, user] = await loginUser(username);
     if (user !== null) {
       storageSave("username", user);
+      console.log(user);
+      navigate("/Main");
     }
   };
 
@@ -44,10 +50,10 @@ const Login = () => {
       return null;
     }
     if (errors.username.type === "required") {
-      return <span>Username is required</span>;
+      return <span> Username is required</span>;
     }
     if (errors.username.type === "minLength") {
-      return <span>Username is too short (min. 5 chars)</span>;
+      return <span> Username is too short (min. 5 chars)</span>;
     }
   })();
 

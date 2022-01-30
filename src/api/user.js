@@ -10,7 +10,6 @@ const checkForUser = async (username) => {
     }
     const data = await response.json();
     console.log(`${apiURL}?username=${username}`);
-    console.log(data);
     return [null, data];
   } catch (error) {
     return [error.message, []];
@@ -45,7 +44,6 @@ export const loginUser = async (username) => {
   }
 
   if (user.length > 0) {
-    console.log(user.length);
     return [null, user.pop()];
   }
   return await createUser(username);
